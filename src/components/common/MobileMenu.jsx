@@ -13,7 +13,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
     <div className={`fixed inset-0 bg-[#111] z-50 transition-transform duration-500 cubic-bezier(0.76, 0, 0.24, 1) ${isOpen ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="flex flex-col h-full p-6 relative">
         <div className="flex justify-between items-center text-white mb-12">
-          <div className="text-xl font-bold tracking-tighter">ALEX DEV©</div>
+          <div className="text-xl font-bold tracking-tighter">Jixin Yan</div>
           <button onClick={onClose} className="text-white hover:rotate-90 transition-transform duration-300">
             <X size={32} />
           </button>
@@ -33,8 +33,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
         </div>
 
         <div className="mt-auto text-gray-400 font-mono text-sm">
-          <p>BASED IN SAN FRANCISCO</p>
-          <p>AVAILABLE FOR FREELANCE</p>
+          <p>EVANSTON, IL, USA</p>
         </div>
       </div>
     </div>

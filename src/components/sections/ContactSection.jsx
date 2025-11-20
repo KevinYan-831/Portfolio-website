@@ -19,13 +19,12 @@ const ContactSection = () => {
         <RevealOnScroll delay={200} className="hidden lg:flex flex-col justify-end items-end text-right space-y-8">
           <div className="space-y-2">
             <h3 className="text-sm font-mono text-gray-400 uppercase">Contact Details</h3>
-            <a href="mailto:hello@alex.dev" className="text-xl block hover:text-gray-500 transition-colors">hello@alex.dev</a>
-            <p className="text-xl">+1 (555) 000-0000</p>
+            <a href="mailto:hello@alex.dev" className="text-xl block hover:text-gray-500 transition-colors">JixinYan2029@u.northwestern.edu</a>
+            <p className="text-xl">+1 (973) 296-1523</p>
           </div>
           <div className="space-y-2">
             <h3 className="text-sm font-mono text-gray-400 uppercase">Socials</h3>
             <div className="flex gap-4 justify-end">
-              <a href="#" className="hover:text-gray-500 transition-colors">Twitter</a>
               <a href="#" className="hover:text-gray-500 transition-colors">LinkedIn</a>
               <a href="#" className="hover:text-gray-500 transition-colors">GitHub</a>
             </div>
@@ -40,7 +39,7 @@ const ContactSection = () => {
           <a href="#" className="p-4 border border-black/10 rounded-full hover:bg-black hover:text-white transition-colors"><Twitter size={20} /></a>
         </div>
         <div className="text-sm font-medium uppercase text-gray-500">
-          © 2025 Alex Dev.
+          © 2025 Jixin Yan
         </div>
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

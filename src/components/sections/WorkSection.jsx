@@ -5,24 +5,29 @@ import ProjectRow from '../common/ProjectRow';
 const WorkSection = () => {
   const projects = [
     {
-      title: "Pathfinder AI",
-      category: "Algorithm Viz",
-      year: "2024"
+      title: "Careezy-AI",
+      category: "AI Web App",
+      year: "2025"
     },
     {
-      title: "Cloud Atlas",
-      category: "Distributed Sys",
-      year: "2023"
+      title: "Ba-zi College Admission Predictor",
+      category: "Web App",
+      year: "2025"
     },
     {
-      title: "Neural Sync",
+      title: "Scout4One",
       category: "Machine Learning",
-      year: "2023"
+      year: "2025"
     },
     {
-      title: "Vortex Engine",
-      category: "WebGL / 3D",
-      year: "2022"
+      title: "Pet-your-Pet",
+      category: "Web App",
+      year: "2025"
+    },
+    {
+      title: "NBA Fantasy",
+      category: "Machine Learning",
+      year: "2024"
     }
   ];
 
@@ -30,8 +35,8 @@ const WorkSection = () => {
     <section id="work" className="py-32 bg-white">
       <RevealOnScroll>
         <div className="px-6 mb-20 flex items-end justify-between">
-          <h2 className="text-sm font-mono text-gray-400 uppercase">Selected Works (04)</h2>
-          <span className="hidden md:block text-sm font-mono text-gray-400 uppercase">2022 — 2025</span>
+          <h2 className="text-sm font-mono text-gray-400 uppercase">Selected Projects</h2>
+          <span className="hidden md:block text-sm font-mono text-gray-400 uppercase">2024 — 2025</span>
         </div>
       </RevealOnScroll>
 

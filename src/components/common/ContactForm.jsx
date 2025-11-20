@@ -22,7 +22,7 @@ const ContactForm = () => {
             required
             type="text"
             className="w-full bg-transparent border-b border-black/20 py-4 text-xl focus:outline-none focus:border-black transition-colors placeholder:text-gray-300"
-            placeholder="Jane Doe"
+            placeholder="Your Name"
           />
         </div>
         <div className="space-y-2">
@@ -31,7 +31,7 @@ const ContactForm = () => {
             required
             type="email"
             className="w-full bg-transparent border-b border-black/20 py-4 text-xl focus:outline-none focus:border-black transition-colors placeholder:text-gray-300"
-            placeholder="jane@example.com"
+            placeholder="Your Email Address"
           />
         </div>
       </div>

@@ -8,17 +8,14 @@ const AboutSection = () => {
         <div>
           <RevealOnScroll className="sticky top-32">
             <h2 className="text-6xl md:text-8xl font-medium tracking-tight mb-8">
-              Code as <br /> <span className="text-gray-500">Craft.</span>
+              Code as <br /> <span className="text-gray-500">Expression</span>
             </h2>
-            <a href="#" className="text-sm font-mono uppercase text-gray-500 hover:text-white transition-colors border-b border-gray-800 pb-1 inline-block group">
-              Download Resume <ArrowUpRight className="inline-block ml-1 w-3 h-3 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
           </RevealOnScroll>
         </div>
         <div className="flex flex-col justify-between space-y-16">
           <RevealOnScroll delay={200}>
             <p className="text-xl md:text-2xl font-light text-gray-300 leading-relaxed">
-              I believe that robust backend logic and fluid frontend interaction are two sides of the same coin. My approach combines rigorous computer science principles with modern design sensibilities.
+              I build because I’m drawn to the spark between an idea and what it becomes. Every line of code, every design choice, every obstacle teaches me something new. I chase the craft, not the finish line—because for me, the journey is the reward.
             </p>
           </RevealOnScroll>
 
@@ -27,9 +24,9 @@ const AboutSection = () => {
               <div className="border-t border-gray-800 pt-8">
                 <h4 className="text-sm font-mono text-gray-500 mb-6 uppercase">Tech Stack</h4>
                 <div className="grid grid-cols-2 gap-4 text-lg font-light text-gray-300">
-                  <span>TypeScript / React</span>
+                  <span>(Java/Type) Script / React</span>
                   <span>Node.js / Express</span>
-                  <span>Go / Docker</span>
+                  <span>Python / Flask, Django</span>
                   <span>PostgreSQL / Redis</span>
                   <span>AWS / Terraform</span>
                   <span>WebGL / Three.js</span>
@@ -41,10 +38,9 @@ const AboutSection = () => {
               <div className="border-t border-gray-800 pt-8">
                 <h4 className="text-sm font-mono text-gray-500 mb-6 uppercase">Capabilities</h4>
                 <div className="grid grid-cols-2 gap-4 text-lg font-light text-gray-300">
-                  <span>Frontend Development</span>
-                  <span>Backend Architecture</span>
-                  <span>System Design</span>
-                  <span>Performance Optimization</span>
+                  <span>Full Stack Development</span>
+                  <span>Machine Learning</span>
+                  <span>Data Analytics and Visualizations</span>
                 </div>
               </div>
             </RevealOnScroll>

@@ -7,7 +7,7 @@ const HeroSection = () => {
     <section className="h-screen flex flex-col justify-between pt-32 pb-12 px-6 relative">
       <div className="max-w-[90vw]">
         <RevealText
-          text="FULL STACK"
+          text="JIXIN YAN"
           className="text-[13vw] leading-[0.85] font-bold tracking-tighter text-[#111]"
           delay={100}
         />
@@ -17,7 +17,7 @@ const HeroSection = () => {
           delay={300}
         />
         <RevealText
-          text="BASED IN SF"
+          text="BASED IN EVANSTON"
           className="text-[13vw] leading-[0.85] font-bold tracking-tighter text-[#111]"
           delay={500}
         />
@@ -27,8 +27,7 @@ const HeroSection = () => {
         <div className="flex justify-between items-end">
           <div className="hidden md:block max-w-xs">
             <p className="text-sm text-gray-500 leading-relaxed font-medium">
-              Crafting robust digital systems with a focus on aesthetics and interaction.
-              Currently building the future of web tech.
+              THE JOURNEY IS THE REWARD
             </p>
           </div>
           <div className="animate-bounce p-4 rounded-full border border-black/10">

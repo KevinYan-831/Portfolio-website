@@ -9,10 +9,10 @@ const Navbar = ({ onOpenMenu }) => {
         className="text-xl font-bold tracking-tighter cursor-pointer hover:opacity-80 transition-opacity"
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       >
-        ALEX DEV©
+        Jixin Yan
       </div>
       <div className="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
-        <button onClick={() => scrollTo('work')} className="hover:opacity-50 transition-opacity">Work</button>
+        <button onClick={() => scrollTo('work')} className="hover:opacity-50 transition-opacity">Projects</button>
         <button onClick={() => scrollTo('about')} className="hover:opacity-50 transition-opacity">About</button>
         <button onClick={() => scrollTo('contact')} className="hover:opacity-50 transition-opacity">Contact</button>
       </div>
