@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 
-const ProjectRow = ({ id, title, category, year, index }) => {
+const ProjectRow = ({ id, projectId, title, category, year, index }) => {
+  const projectLink = projectId || id;
+
   return (
-    <Link to={`/project/${id}`} className="block">
+    <Link to={`/project/${projectLink}`} className="block">
       <div className="group relative border-t border-black/10 py-12 transition-colors hover:bg-gray-50 cursor-pointer w-full">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-baseline gap-4 z-10 relative">
           <span className="text-sm font-mono text-gray-400 transition-colors group-hover:text-black">0{index + 1}</span>
