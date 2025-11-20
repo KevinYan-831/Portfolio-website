@@ -1,35 +1,9 @@
 import { ArrowUpRight } from 'lucide-react';
 import RevealOnScroll from '../common/RevealOnScroll';
 import ProjectRow from '../common/ProjectRow';
+import { projects } from '../../data/projects';
 
 const WorkSection = () => {
-  const projects = [
-    {
-      title: "Careezy-AI",
-      category: "AI Web App",
-      year: "2025"
-    },
-    {
-      title: "Ba-zi College Admission Predictor",
-      category: "Web App",
-      year: "2025"
-    },
-    {
-      title: "Scout4One",
-      category: "Machine Learning",
-      year: "2025"
-    },
-    {
-      title: "Pet-your-Pet",
-      category: "Web App",
-      year: "2025"
-    },
-    {
-      title: "NBA Fantasy",
-      category: "Machine Learning",
-      year: "2024"
-    }
-  ];
 
   return (
     <section id="work" className="py-32 bg-white">
@@ -44,6 +18,7 @@ const WorkSection = () => {
         {projects.map((project, idx) => (
           <RevealOnScroll key={idx} delay={idx * 100}>
             <ProjectRow
+              id={project.id}
               index={idx}
               title={project.title}
               category={project.category}
