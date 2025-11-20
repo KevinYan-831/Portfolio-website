@@ -4,7 +4,8 @@ import MobileMenu from '../components/common/MobileMenu';
 import Marquee from '../components/common/Marquee';
 import HeroSection from '../components/sections/HeroSection';
 import WorkSection from '../components/sections/WorkSection';
-import AboutSection from '../components/sections/AboutSection';
+import WhatIDoSection from '../components/sections/WhatIDoSection';
+import AboutMeSection from '../components/sections/AboutMeSection';
 import ContactSection from '../components/sections/ContactSection';
 
 const HomePage = () => {
@@ -18,7 +19,8 @@ const HomePage = () => {
       <main>
         <HeroSection />
         <Marquee text="The Journey is the Reward" />
-        <AboutSection />
+        <AboutMeSection />
+        <WhatIDoSection />
         <WorkSection />
         <ContactSection />
       </main>
