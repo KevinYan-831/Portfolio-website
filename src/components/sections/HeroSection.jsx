@@ -25,7 +25,7 @@ const HeroSection = () => {
         />
         <RevealText
           text="DEVELOPER"
-          className="text-[18vw] leading-[0.8] font-bold tracking-tighter text-[#b0b0b0] ml-[5vw]"
+          className="text-[15vw] leading-[0.8] font-bold tracking-tighter text-[#b0b0b0] ml-[5vw]"
           delay={150}
         />
       </div>

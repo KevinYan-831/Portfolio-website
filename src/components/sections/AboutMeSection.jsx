@@ -2,11 +2,9 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const phrases = [
-  "I build intelligent systems",
-  "that combine data science",
-  "with modern web tech.",
-  "Focusing on AI, ML,",
-  "and full-stack dev."
+  "Software Development",
+  "Machine Learning",
+  "Data Analytics",
 ];
 
 const About = () => {
@@ -22,7 +20,7 @@ const About = () => {
                initial={{ opacity: 0, y: 20 }}
                animate={isInView ? { opacity: 1, y: 0 } : {}}
                transition={{ duration: 0.6, delay: 0.2 }}
-               className="text-xs font-medium uppercase tracking-widest text-white/40 block border-b border-white/10 pb-4 w-24"
+               className="text-xl font-medium uppercase tracking-widest text-white/40 block border-b border-white/10 pb-4 w-24"
              >
                About Me
              </motion.span>
@@ -56,10 +54,10 @@ const About = () => {
                className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-white/10 pt-8"
             >
               <p className="text-base text-white/60 leading-relaxed">
-                Based in Evanston, IL, I am a developer at Northwestern University passionate about leveraging Artificial Intelligence and Machine Learning to solve real-world problems.
+                I'm a computer science student at Northwestern University passionate about app development, robotics, and sports analytics.
               </p>
               <p className="text-base text-white/60 leading-relaxed">
-                My work spans from building full-stack web applications to developing complex data analysis algorithms, always striving for technical excellence and user impact.
+                My work spans from building full-stack web applications to applying machine learning algorithms in sports industry.
               </p>
             </motion.div>
           </div>
