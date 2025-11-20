@@ -5,9 +5,9 @@ const AboutSection = () => {
   return (
     <section id="about" className="py-32 px-6 bg-[#111] text-white">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20">
-        <div>
+        <div className="flex items-center justify-center">
           <RevealOnScroll className="sticky top-32">
-            <h2 className="text-6xl md:text-8xl font-medium tracking-tight mb-8">
+            <h2 className="text-6xl md:text-8xl font-medium tracking-tight mb-8 text-center">
               Code as <br /> <span className="text-gray-500">Expression</span>
             </h2>
           </RevealOnScroll>
@@ -27,9 +27,9 @@ const AboutSection = () => {
                   <span>(Java/Type) Script / React</span>
                   <span>Node.js / Express</span>
                   <span>Python / Flask, Django</span>
-                  <span>PostgreSQL / Redis</span>
-                  <span>AWS / Terraform</span>
-                  <span>WebGL / Three.js</span>
+                  <span>PostgreSQL / Supabase</span>
+                  <span>Firebase / Replit</span>
+                  <span>Git / Github</span>
                 </div>
               </div>
             </RevealOnScroll>
@@ -41,6 +41,7 @@ const AboutSection = () => {
                   <span>Full Stack Development</span>
                   <span>Machine Learning</span>
                   <span>Data Analytics and Visualizations</span>
+                  <span>Project Management and Prototyping</span>
                 </div>
               </div>
             </RevealOnScroll>
