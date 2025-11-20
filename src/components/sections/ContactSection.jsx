@@ -1,53 +1,81 @@
-import { ArrowUpRight, Github, Linkedin, Twitter } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import RevealOnScroll from '../common/RevealOnScroll';
-import ContactForm from '../common/ContactForm';
+import useSmoothScroll from '../../hooks/useSmoothScroll';
 
 const ContactSection = () => {
-  return (
-    <section id="contact" className="min-h-screen flex flex-col justify-between bg-[#f4f4f4] px-6 py-20">
-      <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-20">
-        <RevealOnScroll className="space-y-8">
-          <p className="text-sm font-mono text-gray-400 uppercase">Get in touch</p>
-          <h2 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9]">
-            LET&apos;S WORK <br /> TOGETHER
-          </h2>
-          <div className="pt-8">
-            <ContactForm />
-          </div>
-        </RevealOnScroll>
+  const scrollTo = useSmoothScroll();
 
-        <RevealOnScroll delay={200} className="hidden lg:flex flex-col justify-end items-end text-right space-y-8">
-          <div className="space-y-2">
-            <h3 className="text-sm font-mono text-gray-400 uppercase">Contact Details</h3>
-            <a href="mailto:hello@alex.dev" className="text-xl block hover:text-gray-500 transition-colors">JixinYan2029@u.northwestern.edu</a>
-            <p className="text-xl">+1 (973) 296-1523</p>
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-sm font-mono text-gray-400 uppercase">Socials</h3>
-            <div className="flex gap-4 justify-end">
-              <a href="#" className="hover:text-gray-500 transition-colors">LinkedIn</a>
-              <a href="#" className="hover:text-gray-500 transition-colors">GitHub</a>
-            </div>
-          </div>
+  return (
+    <section id="contact" className="bg-[#111] text-white px-6 md:px-12 py-32 min-h-[90vh] flex flex-col justify-between rounded-t-[3rem] relative z-30">
+      <div className="max-w-[95vw]">
+        <RevealOnScroll>
+          <p className="text-sm font-mono text-gray-500 uppercase mb-8">Interested?</p>
+          <a
+            href="mailto:JixinYan2029@u.northwestern.edu"
+            className="text-[14vw] leading-[0.8] font-bold tracking-tighter hover:text-gray-500 transition-colors block"
+          >
+            LET&apos;S CONNECT
+          </a>
         </RevealOnScroll>
       </div>
 
-      <RevealOnScroll delay={400} className="border-t border-black/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 mt-20">
-        <div className="flex gap-6 lg:hidden">
-          <a href="#" className="p-4 border border-black/10 rounded-full hover:bg-black hover:text-white transition-colors"><Github size={20} /></a>
-          <a href="#" className="p-4 border border-black/10 rounded-full hover:bg-black hover:text-white transition-colors"><Linkedin size={20} /></a>
-          <a href="#" className="p-4 border border-black/10 rounded-full hover:bg-black hover:text-white transition-colors"><Twitter size={20} /></a>
+      <div className="grid md:grid-cols-3 gap-12 border-t border-white/10 pt-12">
+        <div>
+          <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Navigation</h4>
+          <div className="flex flex-col gap-3 text-lg text-gray-300">
+            <button onClick={() => scrollTo('work')} className="text-left hover:text-white transition-colors">
+              Projects
+            </button>
+            <button onClick={() => scrollTo('about')} className="text-left hover:text-white transition-colors">
+              About
+            </button>
+            <button onClick={() => scrollTo('contact')} className="text-left hover:text-white transition-colors">
+              Contact
+            </button>
+          </div>
         </div>
-        <div className="text-sm font-medium uppercase text-gray-500">
-          © 2025 Jixin Yan
+
+        <div>
+          <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Socials</h4>
+          <div className="flex flex-col gap-3 text-lg text-gray-300">
+            <a
+              href="https://www.linkedin.com/in/jixin-yan/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://www.instagram.com/jixinyan831?igsh=dDM1bG93MmlycDJj&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              Instagram
+            </a>
+            <a
+              href="https://github.com/KevinYan-831"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              GitHub
+            </a>
+          </div>
         </div>
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="text-sm font-medium uppercase flex items-center gap-2 hover:opacity-50 transition-opacity"
-        >
-          Back to Top <ArrowUpRight size={16} />
-        </button>
-      </RevealOnScroll>
+
+        <div className="flex flex-col justify-between">
+          <h4 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Version</h4>
+          <p className="text-gray-500">2025 Edition</p>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="mt-8 text-sm font-bold uppercase tracking-widest flex items-center gap-2 hover:text-gray-500 transition-colors"
+          >
+            Back to Top <ArrowUpRight size={16} />
+          </button>
+        </div>
+      </div>
     </section>
   );
 };

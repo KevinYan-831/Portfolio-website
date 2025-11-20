@@ -17,7 +17,7 @@ const HomePage = () => {
 
       <main>
         <HeroSection />
-        <Marquee text="Open to Work • Creative Dev • System Design •" />
+        <Marquee text="App Development • Machine Learning • Data Analytics •" />
         <WorkSection />
         <AboutSection />
         <ContactSection />
@@ -25,11 +25,26 @@ const HomePage = () => {
 
       <style>{`
         @keyframes fadeIn {
-          from { opacity: 0; transform: translate(-50%, -50%) rotate(0deg) scale(0.9); }
-          to { opacity: 1; transform: translate(-50%, -50%) rotate(-2deg) scale(1); }
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
         .animate-fadeIn {
-          animation: fadeIn 0.4s ease-out forwards;
+          animation: fadeIn 0.6s ease-out forwards;
+          opacity: 0;
+        }
+        .animate-slideInUp {
+          animation: slideInUp 0.7s cubic-bezier(.51,.92,.24,1.15) forwards;
+          opacity: 0;
         }
       `}</style>
     </div>
