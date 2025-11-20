@@ -1,100 +1,97 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
-const cards = [
+const services = [
   {
-    title: "Full-Stack Developer",
-    description: "Building scalable web applications with modern frameworks and cloud infrastructure. From React frontends to Node.js backends, I craft solutions that perform.",
-    tags: ["React", "Node.js", "TypeScript", "Next.js"],
-    color: "#111111"
+    id: "01",
+    title: "Full Stack Dev",
+    description: "Building scalable, responsive web applications using modern technologies like React, Node.js, and Supabase.",
+    color: "#1a1a1a",
+    textColor: "#ffffff"
   },
   {
-    title: "ML Enthusiast",
-    description: "Exploring machine learning to solve real-world problems. From data preprocessing to model deployment, I bridge the gap between data and insights.",
-    tags: ["Python", "TensorFlow", "PyTorch", "Scikit-learn"],
-    color: "#161616"
+    id: "02",
+    title: "AI & ML",
+    description: "Developing intelligent systems and predictive models using Python, XGBoost, and integrating LLM APIs.",
+    color: "#e1e1e1",
+    textColor: "#050505"
   },
   {
-    title: "Problem Solver",
-    description: "Transforming complex challenges into elegant solutions through clean code, thoughtful design, and continuous learning. The journey is the reward.",
-    tags: ["System Design", "Architecture", "Algorithms", "Optimization"],
-    color: "#1a1a1a"
+    id: "03",
+    title: "Data Science",
+    description: "Analyzing complex datasets to derive actionable insights, utilizing tools like Pandas, NumPy, and Scikit-learn.",
+    color: "#1a1a1a",
+    textColor: "#ffffff"
+  },
+  {
+    id: "04",
+    title: "UI/UX Design",
+    description: "Crafting intuitive and engaging user interfaces that prioritize user experience and accessibility.",
+    color: "#e1e1e1",
+    textColor: "#050505"
   }
 ];
 
-const Card = ({ i, title, description, tags, color, progress, range, targetScale }) => {
-  const containerRef = useRef(null);
-  const scale = useTransform(progress, range, [1, targetScale]);
-  
+const Services = () => {
   return (
-    <div ref={containerRef} className="h-screen flex items-center justify-center sticky top-0">
-      <motion.div
-        style={{
-          scale,
-          backgroundColor: color,
-          top: `calc(5vh + ${i * 25}px)`
-        }}
-        className="flex flex-col relative w-[90vw] md:w-[1000px] h-[60vh] md:h-[550px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl origin-top"
-      >
-        <div className="p-8 md:p-14 flex flex-col h-full justify-between relative z-10">
-          <div className="flex justify-between items-start">
-            <h2 className="text-4xl md:text-6xl font-serif text-white leading-tight max-w-lg">
-              {title}
-            </h2>
-            <span className="text-sm font-mono text-gray-500 border border-gray-800 px-3 py-1 rounded-full">
-              0{i + 1}
-            </span>
-          </div>
-
-          <div className="flex flex-col md:flex-row justify-between items-end gap-8">
-            <p className="text-lg text-gray-400 max-w-md leading-relaxed">
-              {description}
-            </p>
-            
-            <div className="flex flex-wrap gap-2 justify-end">
-              {tags.map((tag, idx) => (
-                <span 
-                  key={idx} 
-                  className="text-xs uppercase tracking-wider text-gray-300 bg-white/5 px-4 py-2 rounded-full border border-white/5"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
+    <section className="relative w-full bg-[#050505]">
+      <div className="px-6 md:px-12 py-24 max-w-screen-xl mx-auto">
+        <div className="mb-24">
+           <span className="text-xs uppercase tracking-widest text-white/40 block border-b border-white/10 pb-4 w-24">
+             What I Do
+           </span>
+           <h2 className="text-4xl md:text-6xl font-bold text-[#e1e1e1] mt-8 font-syne">
+             Capabilities
+           </h2>
         </div>
-      </motion.div>
-    </div>
-  );
-};
 
-const WhatIDoSection = () => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end']
-  });
-
-  return (
-    <section ref={containerRef} id="what-i-do" className="relative bg-black">
-      <div className="pt-20 pb-20 px-6 md:px-12 mb-20">
-        <h2 className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-12">What I Do</h2>
-        {cards.map((card, i) => {
-          const targetScale = 1 - ((cards.length - i) * 0.05);
-          return (
-            <Card
-              key={i}
-              i={i}
-              {...card}
-              progress={scrollYProgress}
-              range={[i * 0.25, 1]}
-              targetScale={targetScale}
-            />
-          );
-        })}
+        <div className="flex flex-col pb-24">
+          {services.map((service, index) => (
+            <div 
+              key={service.id}
+              className="sticky top-0 h-screen flex items-center justify-center"
+              style={{ 
+                top: `${index * 30}px`, 
+                zIndex: index + 1,
+                marginBottom: index === services.length - 1 ? 0 : '0px' 
+              }}
+            >
+              <motion.div
+                className="w-full h-[60vh] md:h-[70vh] rounded-2xl overflow-hidden relative flex flex-col shadow-2xl"
+                style={{
+                  backgroundColor: service.color,
+                  color: service.textColor,
+                  transformOrigin: "top center"
+                }}
+                initial={{ y: 100, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className="p-8 md:p-16 flex flex-col justify-between h-full">
+                  <div className="flex justify-between items-start border-b border-current pb-8" style={{ borderColor: 'rgba(125,125,125,0.2)' }}>
+                     <span className="text-xl md:text-2xl font-bold opacity-50">{service.id}</span>
+                     <div className="w-8 h-8 rounded-full border border-current opacity-50 flex items-center justify-center transform -rotate-45">
+                        →
+                     </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-end">
+                    <h3 className="text-4xl md:text-7xl font-bold font-syne leading-none tracking-tighter">
+                      {service.title}
+                    </h3>
+                    <p className="text-lg md:text-xl opacity-70 leading-relaxed max-w-md">
+                      {service.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
 };
 
-export default WhatIDoSection;
+export default Services;

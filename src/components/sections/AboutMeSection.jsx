@@ -1,59 +1,66 @@
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
-const AboutMeSection = () => {
+const phrases = [
+  "I build intelligent systems",
+  "that combine data science",
+  "with modern web tech.",
+  "Focusing on AI, ML,",
+  "and full-stack dev."
+];
+
+const About = () => {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-20%" });
+
   return (
-    <section id="about-me" className="bg-black text-white py-32 relative z-10">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="flex flex-col md:flex-row gap-16 md:gap-24">
-          {/* Left Column - Title */}
-          <div className="w-full md:w-1/3">
-            <h2 className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-8 sticky top-32">
-              About Me
-            </h2>
+    <section ref={containerRef} id="about" className="min-h-screen w-full flex items-center justify-center bg-[#050505] py-24 text-[#e1e1e1]">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-12 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div className="md:col-span-3">
+             <motion.span 
+               initial={{ opacity: 0, y: 20 }}
+               animate={isInView ? { opacity: 1, y: 0 } : {}}
+               transition={{ duration: 0.6, delay: 0.2 }}
+               className="text-xs font-medium uppercase tracking-widest text-white/40 block border-b border-white/10 pb-4 w-24"
+             >
+               About Me
+             </motion.span>
           </div>
-
-          {/* Right Column - Content */}
-          <div className="w-full md:w-2/3 flex flex-col gap-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h3 className="text-3xl md:text-5xl font-serif leading-tight mb-8">
-                I&apos;m a creative developer passionate about building digital experiences that matter.
-              </h3>
-              <p className="text-lg text-gray-400 leading-relaxed mb-6">
-                With a background in both design and engineering, I bridge the gap between aesthetics and functionality. I believe that the best products are those that not only work perfectly but also bring joy to their users.
-              </p>
-              <p className="text-lg text-gray-400 leading-relaxed">
-                Currently, I&apos;m focused on exploring the intersection of AI and web development, creating intelligent interfaces that adapt and learn. When I&apos;m not coding, you can find me exploring new technologies, reading about design theory, or capturing moments through my camera lens.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="grid grid-cols-2 gap-8 pt-8 border-t border-white/10"
-            >
-              <div>
-                <h4 className="text-sm font-bold uppercase tracking-widest mb-4">Contact</h4>
-                <ul className="flex flex-col gap-2 text-gray-400">
-                  <li><a href="mailto:hello@example.com" className="hover:text-white transition-colors">Email</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">LinkedIn</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">GitHub</a></li>
-                </ul>
+          
+          <div className="md:col-span-9">
+            <div className="space-y-2">
+            {phrases.map((phrase, index) => (
+              <div key={index} className="overflow-hidden">
+                <motion.h2
+                  custom={index}
+                  initial={{ y: "110%" }}
+                  animate={isInView ? { y: 0 } : {}}
+                  transition={{ 
+                    duration: 1, 
+                    ease: [0.16, 1, 0.3, 1], 
+                    delay: 0.1 * index 
+                  }}
+                  className="text-3xl md:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight"
+                >
+                  {phrase}
+                </motion.h2>
               </div>
-              <div>
-                <h4 className="text-sm font-bold uppercase tracking-widest mb-4">Services</h4>
-                <ul className="flex flex-col gap-2 text-gray-400">
-                  <li>Web Development</li>
-                  <li>UI/UX Design</li>
-                  <li>Technical Strategy</li>
-                </ul>
-              </div>
+            ))}
+            </div>
+            
+            <motion.div 
+               initial={{ opacity: 0, y: 20 }}
+               animate={isInView ? { opacity: 1, y: 0 } : {}}
+               transition={{ delay: 0.8, duration: 1 }}
+               className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-white/10 pt-8"
+            >
+              <p className="text-base text-white/60 leading-relaxed">
+                Based in Evanston, IL, I am a developer at Northwestern University passionate about leveraging Artificial Intelligence and Machine Learning to solve real-world problems.
+              </p>
+              <p className="text-base text-white/60 leading-relaxed">
+                My work spans from building full-stack web applications to developing complex data analysis algorithms, always striving for technical excellence and user impact.
+              </p>
             </motion.div>
           </div>
         </div>
@@ -62,4 +69,4 @@ const AboutMeSection = () => {
   );
 };
 
-export default AboutMeSection;
+export default About;

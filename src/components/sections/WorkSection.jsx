@@ -1,128 +1,123 @@
-import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { projects } from '../../data/projects';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
-const ProjectItem = ({ project, index, updateActive }) => {
+import { projects as projectData } from '../../data/projects';
+
+// Placeholder images since project data doesn't have images yet
+const placeholderImages = [
+  "https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop"
+];
+
+const projects = projectData.map((project, index) => ({
+  id: index + 1,
+  title: project.title,
+  category: project.category,
+  src: project.images?.[0] || placeholderImages[index % placeholderImages.length]
+}));
+
+const ProjectCard = ({ project, index, setIndex }) => {
   const ref = useRef(null);
-  // Adjusted margin to trigger closer to center of viewport
-  const isInView = useInView(ref, { margin: "-45% 0px -45% 0px" });
+  const isInView = useInView(ref, { margin: "-40% 0px -40% 0px" });
 
   useEffect(() => {
     if (isInView) {
-      updateActive(index);
+      setIndex(index);
     }
-  }, [isInView, index, updateActive]);
+  }, [isInView, index, setIndex]);
 
   return (
-    <div ref={ref} className="flex flex-col gap-6 w-full">
-      {/* Mobile Header */}
-      <div className="md:hidden flex justify-between items-end border-b border-gray-800 pb-4">
-        <h3 className="text-3xl font-serif">{project.title}</h3>
-        <span className="text-2xl font-serif text-gray-600">0{index + 1}</span>
+    <div ref={ref} className="mb-32 last:mb-0 group cursor-pointer w-full">
+      <div className="relative overflow-hidden bg-[#111] aspect-[3/4] md:aspect-[4/3] mb-6">
+         <motion.img 
+           src={project.src} 
+           alt={project.title}
+           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+           initial={{ scale: 1.2 }}
+           whileInView={{ scale: 1 }}
+           viewport={{ once: true }}
+           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+         />
       </div>
-
-      {/* Image Card */}
-      <Link to={`/project/${project.id}`} className="block w-full">
-        <motion.div
-          className="w-full aspect-[4/3] md:aspect-[16/9] overflow-hidden relative group cursor-pointer bg-[#1a1a1a] rounded-lg"
-          whileHover={{ scale: 0.98 }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* Placeholder Image as requested */}
-          <div className="w-full h-full bg-gray-900 flex items-center justify-center group-hover:bg-gray-800 transition-colors duration-500">
-            <span className="text-gray-700 font-mono text-sm uppercase tracking-widest">
-              Project Preview
-            </span>
-          </div>
-          
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
-        </motion.div>
-      </Link>
-
-      {/* Mobile Details */}
-      <div className="md:hidden flex justify-between text-xs text-gray-500 uppercase tracking-widest">
-        <span>{project.category}</span>
-        <span>{project.year}</span>
+      <div className="flex flex-col gap-2">
+        <h3 className="text-2xl md:text-3xl font-medium text-[#e1e1e1]">{project.title}</h3>
+        <span className="text-sm text-white/40 uppercase tracking-wider">{project.category}</span>
       </div>
     </div>
   );
 };
 
-const WorkSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+const Works = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <section id="work" className="bg-[#0f0f0f] text-white relative z-10">
-      <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row">
-        
-        {/* Sticky Left Sidebar - Fixed Positioning */}
-        <div className="hidden md:flex w-1/3 h-screen sticky top-0 flex-col justify-center pl-4 pr-12">
-          <div className="mb-12">
-            <h2 className="text-xs uppercase tracking-[0.3em] text-gray-500">Selected Works</h2>
+    <section id="works" className="relative w-full bg-[#050505] text-white py-24">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-12">
+        <div className="flex flex-col md:flex-row gap-12">
+          
+          <div className="hidden md:block md:w-1/4">
+            <div className="sticky top-24">
+              <span className="text-xs uppercase tracking-widest text-white/40 block border-b border-white/10 pb-4 w-24 mb-8">
+                 Selected Works
+               </span>
+            </div>
+          </div>
+          
+          <div className="md:hidden mb-8">
+            <span className="text-xs uppercase tracking-widest text-white/40 block border-b border-white/10 pb-4 w-24">
+               Selected Works
+             </span>
           </div>
 
-          {/* Animated Counter */}
-          <div className="relative overflow-hidden h-[160px] mb-8">
-            <AnimatePresence>
-              <motion.div
-                key={activeIndex}
-                initial={{ y: "100%" }}
-                animate={{ y: "0%" }}
-                exit={{ y: "-100%" }}
-                transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-                className="text-[9rem] leading-none font-serif text-white absolute top-0 left-0"
-              >
-                0{activeIndex + 1}
-              </motion.div>
-            </AnimatePresence>
+          <div className="w-full md:w-2/4">
+             {projects.map((project, index) => (
+               <ProjectCard 
+                  key={project.id} 
+                  project={project} 
+                  index={index} 
+                  setIndex={setCurrentIndex} 
+               />
+             ))}
           </div>
 
-          {/* Animated Project Details */}
-          <div className="min-h-[200px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }}
-              >
-                <h3 className="text-4xl font-serif mb-4 leading-tight">
-                  {projects[activeIndex].title}
-                </h3>
-                
-                <div className="flex flex-col gap-4">
-                  <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-                    {projects[activeIndex].description}
-                  </p>
-                  
-                  <div className="flex gap-4 text-xs text-gray-500 uppercase tracking-widest mt-2">
-                    <span>{projects[activeIndex].category}</span>
-                    <span className="text-gray-700">/</span>
-                    <span>{projects[activeIndex].year}</span>
-                  </div>
+          <div className="hidden md:block md:w-1/4 relative">
+            <div className="sticky top-1/2 -translate-y-1/2 flex justify-end">
+                <div className="flex items-start gap-4">
+                    <div className="text-xs font-medium text-white/40 uppercase tracking-widest mt-2">
+                        No.
+                    </div>
+                    <div className="h-[5rem] overflow-hidden relative">
+                        <motion.div 
+                            animate={{ y: `-${currentIndex * 5}rem` }} 
+                            transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+                            className="flex flex-col"
+                        >
+                            {projects.map((project) => (
+                                <div key={project.id} className="h-[5rem] flex items-center justify-end">
+                                    <span className="text-7xl font-syne font-bold text-white leading-none">
+                                        0{project.id}
+                                    </span>
+                                </div>
+                            ))}
+                        </motion.div>
+                    </div>
                 </div>
-              </motion.div>
-            </AnimatePresence>
+            </div>
           </div>
+          
         </div>
-
-        {/* Vertical Scrollable Projects - Right Side */}
-        <div className="w-full md:w-2/3 md:pl-12 flex flex-col gap-32 md:gap-64 pb-40 pt-20">
-          {projects.map((project, index) => (
-            <ProjectItem
-              key={project.id}
-              project={project}
-              index={index}
-              updateActive={setActiveIndex}
-            />
-          ))}
+        
+        <div className="flex justify-center mt-24">
+             <button className="px-8 py-4 border border-white/20 rounded-full text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+                 View Full Archive
+             </button>
         </div>
       </div>
     </section>
   );
 };
 
-export default WorkSection;
+export default Works;
