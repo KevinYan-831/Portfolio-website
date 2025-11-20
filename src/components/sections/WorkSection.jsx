@@ -1,80 +1,107 @@
-import { ArrowUpRight, Plus } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import RevealOnScroll from '../common/RevealOnScroll';
+import { motion, useInView } from 'framer-motion';
 import { projects } from '../../data/projects';
 
-const ProjectRow = ({ title, category, year, index, id }) => {
+const ProjectItem = ({ project, index, updateActive }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { margin: "-50% 0px -50% 0px" });
+
+  useEffect(() => {
+    if (isInView) {
+      updateActive(index);
+    }
+  }, [isInView, index, updateActive]);
+
   return (
-    <Link to={`/project/${id}`} className="block">
-      <div className="group relative border-t border-black/10 transition-colors duration-500 hover:bg-white cursor-pointer w-full">
-        <div className="relative z-10 px-6 py-12 md:py-16 flex flex-col md:flex-row justify-between items-start md:items-baseline gap-6 md:gap-12">
-          <span className="text-sm font-mono text-gray-400 w-12 transition-colors group-hover:text-black">
-            {String(index + 1).padStart(2, '0')}
-          </span>
-
-          <div className="flex-grow overflow-hidden">
-            <h3 className="text-2xl md:text-8xl font-medium text-[#111] tracking-tighter group-hover:translate-x-4 transition-transform duration-700 cubic-bezier(0.25, 1, 0.5, 1)">
-              {title}
-            </h3>
-          </div>
-
-          <div className="flex items-center gap-8 md:ml-auto w-full md:w-auto justify-between md:justify-end opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500 delay-75">
-            <span className="text-xl font-mono uppercase text-gray-400 group-hover:text-black transition-colors">
-              {category}
-            </span>
-            <span className="text-xl font-mono text-gray-400 group-hover:text-black transition-colors">
-              {year}
-            </span>
-
-            <div className="w-12 h-12 rounded-full bg-[#111] text-white flex items-center justify-center transform scale-0 group-hover:scale-100 transition-transform duration-500 cubic-bezier(0.25, 1, 0.5, 1)">
-              <ArrowUpRight size={20} />
-            </div>
-          </div>
-        </div>
+    <div ref={ref} className="flex flex-col gap-6">
+      {/* Mobile Header */}
+      <div className="md:hidden flex justify-between items-end border-b border-gray-800 pb-4">
+        <h3 className="text-3xl font-serif">{project.title}</h3>
+        <span className="text-2xl font-serif text-gray-600">0{index + 1}</span>
       </div>
-    </Link>
+
+      {/* Image Card */}
+      <Link to={`/project/${project.id}`}>
+        <motion.div
+          className="w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden relative group cursor-pointer bg-gray-900"
+          whileHover={{ scale: 0.99 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.img
+            src={`https://images.unsplash.com/photo-${1500000000000 + index * 100000000}?w=1000&h=1300&fit=crop`}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+        </motion.div>
+      </Link>
+
+      {/* Mobile Details */}
+      <div className="md:hidden flex justify-between text-xs text-gray-500 uppercase tracking-widest">
+        <span>{project.category}</span>
+        <span>{project.year}</span>
+      </div>
+    </div>
   );
 };
 
 const WorkSection = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
-    <section id="work" className="py-32 bg-[#f4f4f4] relative z-20">
-      <div className="px-6 md:px-12 mb-20 flex items-end justify-between">
-        <RevealOnScroll>
-          <h2 className="text-[12vw] leading-[0.8] font-bold tracking-tighter text-[#d4d4d4]">
-            SELECTED<br />PROJECTS
-          </h2>
-        </RevealOnScroll>
-        <span className="hidden md:block text-sm font-mono text-gray-400 uppercase mb-2">
-          2022 — 2025
-        </span>
-      </div>
+    <section id="work" className="bg-[#0f0f0f] text-white py-20 md:py-32 relative z-10">
+      <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row">
+        {/* Sticky Left Sidebar */}
+        <div className="hidden md:flex w-1/3 h-screen sticky top-0 flex-col justify-center pl-4">
+          <div className="mb-8">
+            <h2 className="text-xs uppercase tracking-[0.3em] text-gray-500">Selected Works</h2>
+          </div>
 
-      <div className="flex flex-col border-b border-black/10">
-        {projects.map((project, idx) => (
-          <RevealOnScroll key={project.id} delay={idx * 50}>
-            <ProjectRow
-              index={idx}
-              title={project.title}
-              category={project.category}
-              year={project.year}
-              id={project.id}
+          {/* Animated Counter */}
+          <div className="relative overflow-hidden h-[180px] mb-6">
+            <motion.div
+              key={activeIndex}
+              initial={{ y: "100%" }}
+              animate={{ y: "0%" }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="text-[10rem] leading-none font-serif text-white mix-blend-difference"
+            >
+              0{activeIndex + 1}
+            </motion.div>
+          </div>
+
+          {/* Animated Project Details */}
+          <div className="h-32">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <h3 className="text-4xl font-serif mb-3 leading-tight">
+                {projects[activeIndex].title}
+              </h3>
+              <div className="flex gap-4 text-sm text-gray-400 uppercase tracking-widest">
+                <span>{projects[activeIndex].category}</span>
+                <span className="text-gray-700">/</span>
+                <span>{projects[activeIndex].year}</span>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Vertical Scrollable Images */}
+        <div className="w-full md:w-2/3 md:pl-24 flex flex-col gap-24 md:gap-40 pb-20 pt-10">
+          {projects.map((project, index) => (
+            <ProjectItem
+              key={project.id}
+              project={project}
+              index={index}
+              updateActive={setActiveIndex}
             />
-          </RevealOnScroll>
-        ))}
-      </div>
-
-      <div className="flex justify-center py-32">
-        <Link
-          to="/projects"
-          className="group relative px-10 py-5 rounded-full overflow-hidden bg-transparent border border-black/20 hover:border-black transition-colors duration-300"
-        >
-          <div className="absolute inset-0 w-full h-full bg-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 cubic-bezier(0.25, 1, 0.5, 1)"></div>
-          <span className="relative flex items-center gap-3 text-xs font-bold uppercase tracking-widest group-hover:text-white transition-colors duration-300">
-            View All Projects
-            <Plus size={14} />
-          </span>
-        </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

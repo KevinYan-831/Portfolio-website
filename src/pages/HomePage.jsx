@@ -17,9 +17,9 @@ const HomePage = () => {
 
       <main>
         <HeroSection />
-        <Marquee text="App Development • Machine Learning • Data Analytics •" />
-        <WorkSection />
+        <Marquee text="The Journey is the Reward" />
         <AboutSection />
+        <WorkSection />
         <ContactSection />
       </main>
 

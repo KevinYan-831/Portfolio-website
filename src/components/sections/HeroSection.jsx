@@ -19,7 +19,7 @@ const HeroSection = () => {
     <section className="min-h-screen flex flex-col justify-end pb-12 px-4 md:px-8 pt-32 relative">
       <div className="max-w-full space-y-[-2vw] z-0">
         <RevealText
-          text="ASPIRING"
+          text="JIXIN YAN"
           className="text-[18vw] leading-[0.8] font-bold tracking-tighter text-[#111]"
           delay={0}
         />
