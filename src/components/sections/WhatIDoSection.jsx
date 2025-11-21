@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const services = [
@@ -40,7 +40,7 @@ const Card = ({ service, index, total, progress, range, targetScale }) => {
       }}
     >
       <motion.div
-        className="w-full max-w-4xl h-[60vh] md:h-[70vh] rounded-3xl overflow-hidden relative flex flex-col shadow-2xl origin-top"
+        className="w-full max-w-6xl h-[60vh] md:h-[70vh] rounded-3xl overflow-hidden relative flex flex-col shadow-2xl origin-top"
         style={{
           backgroundColor: service.color,
           color: service.textColor,

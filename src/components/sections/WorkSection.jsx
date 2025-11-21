@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { projects as projectData } from '../../data/projects';
 
@@ -16,7 +16,8 @@ const projects = projectData.map((project, index) => ({
   id: project.id,
   title: project.title,
   category: project.category,
-  src: project.images?.[0] || placeholderImages[index % placeholderImages.length]
+  src: project.images?.[0] || placeholderImages[index % placeholderImages.length],
+  video: project.video
 }));
 
 const ProjectCard = ({ project, index, setIndex }) => {
@@ -69,14 +70,25 @@ const ProjectCard = ({ project, index, setIndex }) => {
         }}
       >
         <div className="relative overflow-hidden bg-[#111] aspect-[3/4] md:aspect-[4/3] mb-6 rounded-lg shadow-2xl">
-           <motion.img 
-             src={project.src} 
-             alt={project.title}
-             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-           />
+           {project.video ? (
+             <video
+               src={project.video}
+               autoPlay
+               loop
+               muted
+               playsInline
+               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+             />
+           ) : (
+             <motion.img 
+               src={project.src} 
+               alt={project.title}
+               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+             />
+           )}
            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
         </div>
-        <div className="flex flex-col gap-2 transform translate-z-10">
+        <div className="flex flex-col gap-2 transform translate-z-10 md:hidden">
           <h3 className="text-2xl md:text-3xl font-medium text-[#e1e1e1] group-hover:text-white transition-colors">{project.title}</h3>
           <span className="text-sm text-white/40 uppercase tracking-wider group-hover:text-white/60 transition-colors">{project.category}</span>
         </div>
@@ -95,7 +107,7 @@ const Works = () => {
         <div className="flex flex-col md:flex-row gap-12 relative">
           
           {/* Left Sticky Column */}
-          <div className="hidden md:block md:w-1/4 relative">
+          <div className="hidden md:block md:w-[15%] relative">
             <div className="sticky top-24 h-fit">
               <span className="text-xs uppercase tracking-widest text-white/40 block border-b border-white/10 pb-4 w-24 mb-8">
                  Selected Projects
@@ -111,7 +123,7 @@ const Works = () => {
           </div>
 
           {/* Middle Scrollable Column */}
-          <div className="w-full md:w-2/4 perspective-1000">
+          <div className="w-full md:w-[60%] perspective-1000">
              {projects.map((project, index) => (
                <ProjectCard 
                   key={project.id} 
@@ -123,9 +135,9 @@ const Works = () => {
           </div>
 
           {/* Right Sticky Column */}
-          <div className="hidden md:block md:w-1/4 relative">
-            <div className="sticky top-1/2 -translate-y-1/2 flex justify-end h-fit">
-                <div className="flex items-start gap-4">
+          <div className="hidden md:block md:w-[25%] relative">
+            <div className="sticky top-1/2 -translate-y-1/2 flex flex-col items-end h-fit text-right">
+                <div className="flex items-start gap-4 mb-8">
                     <div className="text-xs font-medium text-white/40 uppercase tracking-widest mt-2">
                         No.
                     </div>
@@ -144,6 +156,22 @@ const Works = () => {
                             ))}
                         </motion.div>
                     </div>
+                </div>
+
+                <div className="flex flex-col items-end min-h-[100px]">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={currentIndex}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                            className="flex flex-col items-end"
+                        >
+                            <h3 className="text-3xl font-bold text-white mb-2 font-syne text-right">{projects[currentIndex].title}</h3>
+                            <span className="text-sm text-white/40 uppercase tracking-wider text-right">{projects[currentIndex].category}</span>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
             </div>
           </div>
