@@ -1,3 +1,14 @@
+import careezyVideo from '../assets/images/Careezy/careezy.mp4';
+import careezyLogo from '../assets/images/Careezy/Careezy-logo.png';
+import baziVideo from '../assets/images/Ba-zi/college.mp4';
+import scoutVideo from '../assets/images/hackathon/11月17日.mov';
+import scoutLogo from '../assets/images/hackathon/ChatGPT Image Nov 16, 2025, 09_35_40 PM.png';
+import petVideo from '../assets/images/Pet-your-pet/Pet.mp4';
+import petLogo from '../assets/images/Pet-your-pet/petyourpet.png';
+import fantasyPreview from '../assets/images/fantasy/1748655177478.jpeg';
+import fantasyImg1 from '../assets/images/fantasy/1748655289889.jpeg';
+import fantasyImg2 from '../assets/images/fantasy/Rplot01.png';
+
 export const projects = [
   {
     id: "careezy",
@@ -24,8 +35,10 @@ export const projects = [
       "Secure payment processing with Stripe",
       "User authentication and authorization"
     ],
-    github: "",
-    demo: "",
+    github: "https://github.com/KevinYan-831/Careezy-AI",
+    demo: "https://careezy.space/",
+    video: careezyVideo,
+    logo: careezyLogo,
     images: []
   },
   {
@@ -54,8 +67,9 @@ export const projects = [
       "Form validation and error handling",
       "Automated CI/CD deployment"
     ],
-    github: "",
-    demo: "",
+    github: "https://github.com/KevinYan-831/college-prediction",
+    demo: "https://collegesuanming.tech/",
+    video: baziVideo,
     images: []
   },
   {
@@ -82,8 +96,10 @@ export const projects = [
       "Real-time player comparisons",
       "Performance trend visualization"
     ],
-    github: "",
-    demo: "",
+    github: "https://github.com/KevinYan-831/Scout4One",
+    demo: "https://scout4one.space",
+    video: scoutVideo,
+    logo: scoutLogo,
     images: []
   },
   {
@@ -111,8 +127,10 @@ export const projects = [
       "Responsive design",
       "Automated deployment pipeline"
     ],
-    github: "",
-    demo: "",
+    github: "https://github.com/KevinYan-831/Pet-your-Pet",
+    demo: "https://petyourpet.online/",
+    video: petVideo,
+    logo: petLogo,
     images: []
   },
   {
@@ -141,6 +159,7 @@ export const projects = [
     ],
     github: "",
     demo: "",
-    images: []
+    src: fantasyPreview,
+    images: [fantasyImg1, fantasyImg2]
   }
 ];

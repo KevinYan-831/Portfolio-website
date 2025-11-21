@@ -55,6 +55,16 @@ const ProjectDetail = () => {
               <span className="text-sm font-mono text-white/40">{project.year}</span>
             </div>
 
+            {project.logo && (
+              <div className="mb-8">
+                <img 
+                  src={project.logo} 
+                  alt={`${project.title} Logo`} 
+                  className="w-24 h-24 md:w-32 md:h-32 object-contain rounded-2xl bg-white/5 p-4 border border-white/10"
+                />
+              </div>
+            )}
+
             <h1 className="text-5xl md:text-8xl font-bold mb-8 tracking-tighter font-syne leading-none">
               {project.title}
             </h1>
@@ -89,6 +99,20 @@ const ProjectDetail = () => {
                 </a>
               )}
             </div>
+
+            {project.video && (
+              <div className="mt-16 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                <video
+                  src={project.video}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controls
+                  className="w-full aspect-video object-cover"
+                />
+              </div>
+            )}
           </div>
         </RevealOnScroll>
 
@@ -134,9 +158,23 @@ const ProjectDetail = () => {
               </div>
               <div className="md:col-span-8">
                 <div className="bg-[#111] p-10 md:p-14 rounded-3xl border border-white/10">
-                  <p className="text-lg md:text-xl text-white/80 leading-relaxed font-light">
+                  <p className="text-lg md:text-xl text-white/80 leading-relaxed font-light mb-8">
                     {project.overview}
                   </p>
+                  
+                  {project.images && project.images.length > 0 && (
+                    <div className="grid gap-6 mt-8">
+                      {project.images.map((img, idx) => (
+                        <div key={idx} className="rounded-2xl overflow-hidden border border-white/10">
+                          <img 
+                            src={img} 
+                            alt={`${project.title} Screenshot ${idx + 1}`} 
+                            className="w-full h-auto object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

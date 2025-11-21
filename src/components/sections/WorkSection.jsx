@@ -16,7 +16,7 @@ const projects = projectData.map((project, index) => ({
   id: project.id,
   title: project.title,
   category: project.category,
-  src: project.images?.[0] || placeholderImages[index % placeholderImages.length],
+  src: project.src || project.images?.[0] || placeholderImages[index % placeholderImages.length],
   video: project.video
 }));
 
@@ -69,7 +69,7 @@ const ProjectCard = ({ project, index, setIndex }) => {
           transformStyle: "preserve-3d" 
         }}
       >
-        <div className="relative overflow-hidden bg-[#111] aspect-[3/4] md:aspect-[4/3] mb-6 rounded-lg shadow-2xl">
+        <div className="relative overflow-hidden bg-[#111] aspect-video mb-6 rounded-lg shadow-2xl">
            {project.video ? (
              <video
                src={project.video}
